@@ -1,15 +1,14 @@
-from django.shortcuts import render, redirect
-from .forms import ClienteForm
+from django.views.generic import ListView, DetailView
+from .models import Cliente
 
-def registrar_cliente(request):
-    if request.method == 'POST':
-        form = ClienteForm(request.POST)
-        if form.is_valid():
-            form.save()  # guarda el cliente en la base de datos
-            return redirect('clientes:registro_exitoso')
-    else:
-        form = ClienteForm()
-    return render(request, 'clientes/registrar_cliente.html', {'form': form})
+# Vista para listar todos los clientes
+class ClienteListView(ListView):
+    model = Cliente
+    template_name = 'clientes/lista_clientes.html'
+    context_object_name = 'clientes'
 
-def registro_exitoso(request):
-    return render(request, 'clientes/registro_exitoso.html')
+# Vista para ver el detalle de un cliente
+class ClienteDetailView(DetailView):
+    model = Cliente
+    template_name = 'clientes/detalle_cliente.html'
+    context_object_name = 'cliente'
