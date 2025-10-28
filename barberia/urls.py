@@ -24,5 +24,7 @@ urlpatterns = [
     path('clientes/', include('clientes.urls')),  # URLs de clientes
     path('servicios/', include('servicios.urls')),  # URLs de servicios
     path('citas/', include('citas.urls')),  # URLs de citas
+    path('galeria/', include('galeria.urls')),
     path('', RedirectView.as_view(url='/clientes/')),  # Página de inicio redirige a clientes
 ]
+
