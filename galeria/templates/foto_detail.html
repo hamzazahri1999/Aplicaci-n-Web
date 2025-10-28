@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de la foto</title>
+</head>
+<body>
+    <h1>{{ object.descripcion }}</h1>
+    <img src="{{ object.imagen.url }}" alt="{{ object.descripcion }}" width="400">
+    <p><a href="/galeria/">Volver a la galería</a></p>
+</body>
+</html>
