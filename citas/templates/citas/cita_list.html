@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Citas</title>
+</head>
+<body>
+    <h1>Citas programadas</h1>
+    <ul>
+        {% for cita in citas %}
+            <li>
+                <a href="{{ cita.id }}/">{{ cita.cliente.nombre }} - {{ cita.servicio.nombre }} ({{ cita.fecha }} {{ cita.hora }})</a>
+            </li>
+        {% empty %}
+            <li>No hay citas registradas.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
