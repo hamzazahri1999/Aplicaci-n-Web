@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Galería de cortes</title>
+</head>
+<body>
+    <h1>Galería de cortes</h1>
+    <ul>
+        {% for foto in fotos %}
+            <li>
+                <a href="{{ foto.id }}/">
+                    <img src="{{ foto.imagen.url }}" alt="{{ foto.descripcion }}" width="200">
+                </a>
+            </li>
+        {% empty %}
+            <li>No hay fotos en la galería.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
