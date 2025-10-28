@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Servicios</title>
+</head>
+<body>
+    <h1>Servicios disponibles</h1>
+    <ul>
+        {% for servicio in servicios %}
+            <li><a href="{{ servicio.id }}/">{{ servicio.nombre }} - {{ servicio.precio }} €</a></li>
+        {% empty %}
+            <li>No hay servicios registrados.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
