@@ -2,20 +2,70 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Galería de cortes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - Barbería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            color: #1a3d1a;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #196619;
+            margin-top: 30px;
+        }
+        .foto-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease-in-out;
+        }
+        .foto-card:hover {
+            transform: scale(1.03);
+        }
+        .foto-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .btn-verde {
+            background-color: #28a745;
+            border: none;
+        }
+        .btn-verde:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <h1>Galería de cortes</h1>
-    <ul>
-        {% for foto in fotos %}
-            <li>
-                <a href="{{ foto.id }}/">
-                    <img src="{{ foto.imagen.url }}" alt="{{ foto.descripcion }}" width="200">
-                </a>
-            </li>
-        {% empty %}
-            <li>No hay fotos en la galería.</li>
-        {% endfor %}
-    </ul>
+    <div class="container text-center">
+        <h1 class="mb-4">Galería de Cortes</h1>
+
+        <a href="{% url 'foto_create' %}" class="btn btn-verde mb-4 text-white">➕ Añadir nueva foto</a>
+
+        <div class="row">
+            {% for foto in fotos %}
+            <div class="col-md-4 mb-4">
+                <div class="foto-card">
+                    <a href="{% url 'foto_detail' foto.id %}">
+                        <img src="{{ foto.imagen.url }}" alt="{{ foto.descripcion }}">
+                    </a>
+                    <div class="p-3">
+                        <h5>{{ foto.titulo }}</h5>
+                        <p>{{ foto.descripcion|truncatechars:60 }}</p>
+                        <a href="{% url 'foto_update' foto.id %}" class="btn btn-sm btn-outline-success">Editar</a>
+                        <a href="{% url 'foto_delete' foto.id %}" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p>No hay fotos disponibles en la galería.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
